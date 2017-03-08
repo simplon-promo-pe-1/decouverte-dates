@@ -1,6 +1,8 @@
 package co.simplon.dates;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DecouverteDates {
@@ -10,33 +12,37 @@ public class DecouverteDates {
 	}
 
 	public boolean estInferieurDateCourante(Date date) throws ParseException {
-		// TODO
-		throw new RuntimeException("à implémenter");
+		return date.before(new Date());
 	}
 
-	public Date construireDate(String chaineFournie) {
-		// TODO
-		throw new RuntimeException("à implémenter");
+	public Date construireDate(String chaineFournie) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.parse(chaineFournie);
 	}
 
 	public Date augmenterDate(Date dateInitiale, int nombreJours,
 			int nombreHeures, int nombreMinutes) {
-		// TODO
-		throw new RuntimeException("à implémenter");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateInitiale);
+		cal.add(Calendar.DATE, nombreJours);
+		cal.add(Calendar.HOUR_OF_DAY, nombreHeures);
+		cal.add(Calendar.MINUTE, nombreMinutes);
+		
+		return cal.getTime();
 	}
 
 	public String formaterUneDate(Date date) {
-		// TODO
-		return "";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
+		return sdf.format(date);
 	}
 
 	public String formaterUneHeure(Date time) {
-		// TODO
-		return "";
+		SimpleDateFormat sdf = new SimpleDateFormat("HH'h'mm'min'ss'sec'");
+		return sdf.format(time);
 	}
 	
 	public String formaterDateEnFrancais(Date date) {
-		// TODO
-		return "";
+		SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM yyyy");
+		return sdf.format(date);
 	}
 }
